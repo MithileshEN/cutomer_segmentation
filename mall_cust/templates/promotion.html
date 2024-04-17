@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins';
+    background-color: #f8f9fa;
+}
+
+.sidebar {
+    width: 300px; /* Adjust as needed */
+    background-color: #07025b;
+    padding: 20px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    overflow-y: auto;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.admin-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.admin-photo {
+    width: 120px; /* Adjust as needed */
+    height: 120px; /* Adjust as needed */
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.admin-details {
+    color: #fff;
+    text-align: center;
+}
+
+.admin-name {
+    font-size: 20px; /* Adjust as needed */
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.admin-email {
+    font-size: 16px; /* Adjust as needed */
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.sidebar-item {
+    color: #fff;
+    font-size: 20px; /* Adjust as needed */
+    margin-bottom: 15px; /* Adjust as needed */
+    transition: background-color 0.3s, color 0.3s;
+    text-decoration: none;
+}
+
+.sidebar-item:hover {
+    background-color: #495057;
+}
+
+.content {
+    margin-left: 300px; /* Adjust as needed */
+    padding: 20px;
+}
+
+.dashboard-title {
+    text-align: center;
+    font-size: 30px;
+    color: #f9fafb;
+    letter-spacing: 2px;
+    font-weight: bold;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #343a40;
+    padding: 10px 0;
+    margin-top: 20px;
+    font-family: 'Poppins'
+}
+
+.card-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.card {
+    width: calc(100% - 20px);
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    width: 100%;
+    height: 200px; /* Adjust as needed */
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.card p {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        select, textarea, input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button[type="submit"] {
+            background-color: #343a40;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #495057;
+        }
+        .file-upload {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.file-upload input[type="file"] {
+    display: none;
+}
+
+.file-upload label {
+    background-color: #136ac1;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cheque-image {
+    margin-bottom: 20px;
+}
+
+.process-btn {
+    background-color: #136ac1;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.process-btn:hover {
+    background-color: #495057;
+}
+        
+
+
+
+</style>
+<body>
+    <div class="sidebar">
+        <div class="admin-info">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4GBEiQTs1O40jiEu4Us7t5zCNciOwfHHnNw&usqp=CAU" alt="Admin Photo" class="admin-photo">
+            <div class="admin-details">
+                <div class="admin-name"><b>User name</b></div>
+                <div class="admin-email">user@workplace.com</div>
+                <br>
+                <br>
+            </div>
+        </div>
+        <ul>
+            <li><a href="{{ url_for('home') }}" class="sidebar-item active"><b>Dashboard</b></a></li>
+            <br>
+            <li><a href="{{ url_for('process_cheque') }}" class="sidebar-item"><b>Promotional content</b></a></li>
+            <br>
+            <li><a href="{{ url_for('complaint_status') }}" class="sidebar-item"><b>Customer analytics</b></a></li>
+            <br>
+            <li><a href="{{ url_for('raise_complaint') }}" class="sidebar-item"><b>Shop Analytics</b><br></a></li>
+            <br>
+            <li><a href="#" class="sidebar-item"><b>Settings</b><br></a></li>
+            <br>
+        </ul>
+    </div>
+    
+    <div class="content">
+        <div class="dashboard-title">Customer Analytics</div>
+        <div id="lineChartsContainer" style="display: flex; flex-wrap: wrap;"></div>
+        <div id="consoleMessages" style="text-align: center;line-height:3.5;"></div>
+        <script>
+            // Sample dataset
+            const mallsData = [
+                { name: "Westfield", location: "San Francisco, CA", stores: 250, parkingCapacity: 2000, annualVisitors: 15 },
+                { name: "Mall of America", location: "Bloomington, MN", stores: 520, parkingCapacity: 12000, annualVisitors: 40 },
+                { name: "Dubai Mall", location: "Dubai, UAE", stores: 1200, parkingCapacity: 14000, annualVisitors: 80 },
+                { name: "Mall of Emirates", location: "Dubai, UAE", stores: 600, parkingCapacity: 8000, annualVisitors: 30 }
+            ];
+    
+            // Function to create line chart for a mall
+            const createLineChart = (mallData, containerId) => {
+                const canvas = document.createElement('canvas');
+                canvas.width = 600; // Reduced width
+                canvas.height = 400; // Reduced height
+                document.getElementById(containerId).appendChild(canvas);
+    
+                const ctx = canvas.getContext('2d');
+                const chart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                        datasets: [{
+                            label: mallData.name,
+                            data: Array.from({ length: 12 }, () => Math.floor(Math.random() * 100)), // Random sales data for each month
+                            fill: false,
+                            borderColor: 'rgb(75, 192, 192)',
+                            tension: 0.1
+                        }]
+                    },
+                    options: {}
+                });
+    
+                return chart;
+            };
+    
+            // Create line charts for each mall
+            mallsData.forEach((mallData, index) => {
+                const containerId = `row-${Math.floor(index / 2) + 1}-col-${index % 2 + 1}`;
+                if (!document.getElementById(containerId)) {
+                    const rowDiv = document.createElement('div');
+                    rowDiv.id = containerId;
+                    rowDiv.style.display = 'flex';
+                    document.getElementById('lineChartsContainer').appendChild(rowDiv);
+                }
+                createLineChart(mallData, containerId);
+            });
+    
+            // Logic for promotions based on sales
+            const lowSalesThreshold = 20; // Define your threshold for low sales
+            const highSalesThreshold = 60; // Define your threshold for high sales
+    
+            const mallsForPromotions = [];
+            mallsData.forEach((mall, index) => {
+                const salesData = Array.from({ length: 12 }, () => Math.floor(Math.random() * 100)); // Placeholder for actual sales data
+                const monthsBelowThreshold = salesData.filter(sale => sale < lowSalesThreshold).length;
+                const percentageBelowThreshold = (monthsBelowThreshold / 12) * 100;
+                let offerPercentage = 0;
+    
+                if (percentageBelowThreshold >= 50) {
+                    offerPercentage = 50; // High offer percentage for malls with consistently low sales
+                } else if (percentageBelowThreshold >= 30) {
+                    offerPercentage = 40; // Moderate offer percentage for malls with moderate low sales
+                } else {
+                    offerPercentage = 30; // Low offer percentage for malls with occasional low sales
+                }
+    
+                const message = `${mall.name}: Offer percentage - ${offerPercentage}%<br>`;
+                document.getElementById('consoleMessages').innerHTML += message;
+    
+                const totalSales = mall.annualVisitors; // Placeholder for actual sales data
+                if (totalSales < lowSalesThreshold) {
+                    mallsForPromotions.push(mall.name);
+                    // Offer promotions for malls with low sales
+                    // Example: offer discounts, organize events, etc.
+                    const message = `Low sales for ${mall.name}. Offer promotions!<br>`;
+                    document.getElementById('consoleMessages').innerHTML += message;
+                } else if (totalSales > highSalesThreshold) {
+                    // Reduce number of offers for high sales malls
+                    // Your logic for reducing offers goes here
+                    const message = `High sales for ${mall.name}. Reduce offers!<br>`;
+                    document.getElementById('consoleMessages').innerHTML += message;
+                }
+            });
+    
+            const morePromotionsMessage = `Malls for more promotions required: ${JSON.stringify(mallsForPromotions)}`;
+            document.getElementById('consoleMessages').innerHTML += morePromotionsMessage;
+    
+(function(d, m){
+        var kommunicateSettings = 
+            {"appId":"26c5ebaa9c93b416b3aeb2263cc5e1139","popupWidget":true,"automaticChatOpenOnNavigation":true};
+        var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
+        s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
+        var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
+        window.kommunicate = m; m._globals = kommunicateSettings;
+    })(document, window.kommunicate || {});
+</script>
+
+</body>
+</html>

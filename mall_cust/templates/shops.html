@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins';
+    background-color: #f8f9fa;
+}
+
+.sidebar {
+    width: 300px; /* Adjust as needed */
+    background-color: #07025b;
+    padding: 20px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    overflow-y: auto;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.admin-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.admin-photo {
+    width: 120px; /* Adjust as needed */
+    height: 120px; /* Adjust as needed */
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.admin-details {
+    color: #fff;
+    text-align: center;
+}
+
+.admin-name {
+    font-size: 20px; /* Adjust as needed */
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.admin-email {
+    font-size: 16px; /* Adjust as needed */
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.sidebar-item {
+    color: #fff;
+    font-size: 20px; /* Adjust as needed */
+    margin-bottom: 15px; /* Adjust as needed */
+    transition: background-color 0.3s, color 0.3s;
+    text-decoration: none;
+}
+
+.sidebar-item:hover {
+    background-color: #495057;
+}
+
+.content {
+    margin-left: 300px; /* Adjust as needed */
+    padding: 20px;
+}
+
+.dashboard-title {
+    text-align: center;
+    font-size: 30px;
+    color: #f9fafb;
+    letter-spacing: 2px;
+    font-weight: bold;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #343a40;
+    padding: 10px 0;
+    margin-top: 20px;
+    font-family: 'Poppins'
+}
+
+.card-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.card {
+    width: calc(100% - 20px);
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    width: 100%;
+    height: 200px; /* Adjust as needed */
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.card p {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        select, textarea, input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button[type="submit"] {
+            background-color: #343a40;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #495057;
+        }
+        .file-upload {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.file-upload input[type="file"] {
+    display: none;
+}
+
+.file-upload label {
+    background-color: #136ac1;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cheque-image {
+    margin-bottom: 20px;
+}
+
+.process-btn {
+    background-color: #136ac1;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.process-btn:hover {
+    background-color: #495057;
+}
+        
+
+
+
+</style>
+<body>
+    <div class="sidebar">
+        <div class="admin-info">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4GBEiQTs1O40jiEu4Us7t5zCNciOwfHHnNw&usqp=CAU" alt="Admin Photo" class="admin-photo">
+            <div class="admin-details">
+                <div class="admin-name"><b>User name</b></div>
+                <div class="admin-email">user@workplace.com</div>
+                <br>
+                <br>
+            </div>
+        </div>
+        <ul>
+            <li><a href="{{ url_for('home') }}" class="sidebar-item active"><b>Dashboard</b></a></li>
+            <br>
+            <li><a href="{{ url_for('process_cheque') }}" class="sidebar-item"><b>Promotional content</b></a></li>
+            <br>
+            <li><a href="{{ url_for('complaint_status') }}" class="sidebar-item"><b>Customer Analytics</b></a></li>
+            <br>
+            <li><a href="{{ url_for('raise_complaint') }}" class="sidebar-item"><b>Shop analytics</b><br></a></li>
+            <br>
+            <li><a href="#" class="sidebar-item"><b>Settings</b><br></a></li>
+            <br>
+        </ul>
+    </div>
+    
+    <div class="content">
+        <div class="dashboard-title">Shop Analytics</div>
+        <canvas id="barChart" width="600" height="400"></canvas>
+        <canvas id="pieChart" width="600" height="400"></canvas>
+        <script>
+            // Sample dataset
+            const mallsData = [
+                { name: "Westfield", location: "San Francisco, CA", stores: 250, parkingCapacity: 2000, annualVisitors: 15 },
+                { name: "Mall of America", location: "Bloomington, MN", stores: 520, parkingCapacity: 12000, annualVisitors: 40 },
+                { name: "Dubai Mall", location: "Dubai, UAE", stores: 1200, parkingCapacity: 14000, annualVisitors: 80 },
+                { name: "Mall of Emirates", location: "Dubai, UAE", stores: 600, parkingCapacity: 8000, annualVisitors: 30 }
+            ];
+    
+            // Extracting sales data
+            const salesData = mallsData.map(mall => mall.annualVisitors);
+    
+            // Chart.js bar chart
+            const ctxBar = document.getElementById('barChart').getContext('2d');
+            const barChart = new Chart(ctxBar, {
+                type: 'bar',
+                data: {
+                    labels: mallsData.map(mall => mall.name),
+                    datasets: [{
+                        label: 'Annual Visitors (millions)',
+                        data: salesData,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+    
+            // Chart.js pie chart
+            const ctxPie = document.getElementById('pieChart').getContext('2d');
+            const pieChart = new Chart(ctxPie, {
+                type: 'pie',
+                data: {
+                    labels: mallsData.map(mall => mall.name),
+                    datasets: [{
+                        label: 'Annual Visitors (millions)',
+                        data: salesData,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                }
+            });
+    
+(function(d, m){
+        var kommunicateSettings = 
+            {"appId":"26c5ebaa9c93b416b3aeb2263cc5e1139","popupWidget":true,"automaticChatOpenOnNavigation":true};
+        var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
+        s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
+        var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
+        window.kommunicate = m; m._globals = kommunicateSettings;
+    })(document, window.kommunicate || {});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins';
+    background-color: #f8f9fa;
+}
+
+.sidebar {
+    width: 300px; /* Adjust as needed */
+    background-color: #07025b;
+    padding: 20px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    overflow-y: auto;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.admin-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.admin-photo {
+    width: 120px; /* Adjust as needed */
+    height: 120px; /* Adjust as needed */
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.admin-details {
+    color: #fff;
+    text-align: center;
+}
+
+.admin-name {
+    font-size: 20px; /* Adjust as needed */
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.admin-email {
+    font-size: 16px; /* Adjust as needed */
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.sidebar-item {
+    color: #fff;
+    font-size: 20px; /* Adjust as needed */
+    margin-bottom: 15px; /* Adjust as needed */
+    transition: background-color 0.3s, color 0.3s;
+    text-decoration: none;
+}
+
+.sidebar-item:hover {
+    background-color: #495057;
+}
+
+.content {
+    margin-left: 300px; /* Adjust as needed */
+    padding: 20px;
+}
+
+.dashboard-title {
+    text-align: center;
+    font-size: 30px;
+    color: #f9fafb;
+    letter-spacing: 2px;
+    font-weight: bold;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #343a40;
+    padding: 10px 0;
+    margin-top: 20px;
+    font-family: 'Poppins'
+}
+
+.card-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.card {
+    width: calc(100% - 20px);
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    width: 100%;
+    height: 200px; /* Adjust as needed */
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.card p {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        select, textarea, input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button[type="submit"] {
+            background-color: #343a40;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #495057;
+        }
+        .file-upload {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.file-upload input[type="file"] {
+    display: none;
+}
+
+.file-upload label {
+    background-color: #136ac1;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cheque-image {
+    margin-bottom: 20px;
+}
+
+.process-btn {
+    background-color: #136ac1;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.process-btn:hover {
+    background-color: #495057;
+}
+        
+
+
+
+</style>
+<body>
+    <div class="sidebar">
+        <div class="admin-info">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4GBEiQTs1O40jiEu4Us7t5zCNciOwfHHnNw&usqp=CAU" alt="Admin Photo" class="admin-photo">
+            <div class="admin-details">
+                <div class="admin-name"><b>User name</b></div>
+                <div class="admin-email">user@workplace.com</div>
+                <br>
+                <br>
+            </div>
+        </div>
+        <ul>
+            <li><a href="{{ url_for('home') }}" class="sidebar-item active"><b>Dashboard</b></a></li>
+            <br>
+            <li><a href="{{ url_for('process_cheque') }}" class="sidebar-item"><b>promotional content</b></a></li>
+            <br>
+            <li><a href="{{ url_for('complaint_status') }}" class="sidebar-item"><b>Customer Analytics</b></a></li>
+            <br>
+            <li><a href="{{ url_for('raise_complaint') }}" class="sidebar-item"><b>Shop analytics</b><br></a></li>
+            <br>
+            <li><a href="#" class="sidebar-item"><b>Settings</b><br></a></li>
+            <br>
+        </ul>
+    </div>
+    
+    <div class="content">
+        <div class="dashboard-title">Image Generation</div>
+        <div class="analytics-container">
+            
+            <form id="imageForm">
+                <label for="text-input">Enter Text:</label>
+                <input type="text" id="text-input" name="text-input" required>
+                <button type="submit">Generate Image</button>
+            </form>
+            <div id="image-container"></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('imageForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var text = document.getElementById('text-input').value;
+            fetch('/generate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ prompt: text }) // Change 'text' key to 'prompt'
+            })
+            .then(response => {
+                // Log the raw response data
+                return response.text().then(text => {
+                    console.log('Raw Response Data:', text);
+                    return text;
+                });
+            })
+            .then(data => {
+                // Attempt to parse the JSON data
+                try {
+                    var jsonData = JSON.parse(data);
+                    console.log('Parsed Response Data:', jsonData);
+                    
+                    // Check if the response status is COMPLETED
+                    if (jsonData.status === 'COMPLETED') {
+                        // Extract the image URL from the response
+                        var imageUrl = jsonData.data[0].asset_url;
+                        console.log('Image URL:', imageUrl); // Log the image URL to the console
+                        // Display the generated image
+                        var imageContainer = document.getElementById('image-container');
+                        imageContainer.innerHTML = `<img src="${imageUrl}" alt="Generated Image">`;
+                    } else {
+                        // If the status is not COMPLETED, display an error message
+                        var imageContainer = document.getElementById('image-container');
+                        imageContainer.innerHTML = `<p>Error: Image generation failed</p>`;
+                    }
+                } catch (error) {
+                    console.error('Error parsing JSON:', error);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+    
+    
+    
+(function(d, m){
+        var kommunicateSettings = 
+            {"appId":"26c5ebaa9c93b416b3aeb2263cc5e1139","popupWidget":true,"automaticChatOpenOnNavigation":true};
+        var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
+        s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
+        var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
+        window.kommunicate = m; m._globals = kommunicateSettings;
+    })(document, window.kommunicate || {});
+</script>
+
+</body>
+</html>

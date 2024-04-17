@@ -22,11 +22,15 @@ Dashboard<br>
 ![image](https://github.com/MithileshEN/cutomer_segmentation/assets/87403588/cb6f2e17-c00c-40be-81ab-2ce36469746b)
 
 Customer analytics:<br>
-![image](https://github.com/MithileshEN/cutomer_segmentation/assets/87403588/55ec4e90-4831-4ad5-9a78-6ca8378900d9)
+![image](https://github.com/MithileshEN/cutomer_segmentation/assets/87403588/98bc5f13-ec0c-4293-8baa-b67ccbcd59e2)
+
 ![image](https://github.com/MithileshEN/cutomer_segmentation/assets/87403588/b620dbfc-6eb7-417f-91b4-49bc6be695e8)
 
 Sentiment analysis:<br>
-![image](https://github.com/MithileshEN/cutomer_segmentation/assets/87403588/80840060-dbc6-47ad-8c30-0ebf3601bdf1)
+![image](https://github.com/MithileshEN/cutomer_segmentation/assets/87403588/1a404902-47ae-4ae4-a07f-e766de3a4609)
+![image](https://github.com/MithileshEN/cutomer_segmentation/assets/87403588/62a818a6-fc51-4120-b0f6-7d733309a4e4)
+
+
 
 Image generation:<br>
 ![image](https://github.com/MithileshEN/cutomer_segmentation/assets/87403588/42267e72-cf1e-4b82-b7e3-9c766f226aef)
